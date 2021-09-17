@@ -61,7 +61,7 @@
               this.todos.splice(index, 1);
               localStorage.setItem('todos', JSON.stringify(this.todos));
           },
-          check: function(index){  
+          check(index){  
           if (this.todos[index].completed === false){
                     this.todos[index].completed = true
                 }
