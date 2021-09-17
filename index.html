@@ -33,7 +33,7 @@
       </div>
             <ul class="list-group">
                 <li class="list-group-item" v-for="(todo, index) in todos" :class="{ completed: todo.completed }">
-                    <input type="checkbox" v-model="todo.completed">
+                    <input type="checkbox" @click="check(index)"  v-model="todo.completed">
                     <span class="ml-5 text-center">{{ todo.text }}</span>
                     <button @click= "deleteItem(index)" v-if="todo.completed" class="float-right btn btn-sm bg-danger text-white">Delete</button> 
                 </li>
@@ -60,7 +60,16 @@
           deleteItem(index) {
               this.todos.splice(index, 1);
               localStorage.setItem('todos', JSON.stringify(this.todos));
-          }
+          },
+          check: function(index){  
+          if (this.todos[index].completed === false){
+                    this.todos[index].completed = true
+                }
+                else{
+                    this.todos[index].completed = false
+                }
+                localStorage.setItem('todos', JSON.stringify(this.todos));
+          },
         },
         computed: {
           totalItem() {
